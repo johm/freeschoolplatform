@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  site: one
+  is_open: false
+
+two:
+  name: MyString
+  description: MyText
+  site: two
+  is_open: false

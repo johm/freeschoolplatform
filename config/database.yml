@@ -14,8 +14,8 @@ development:
   reconnect: false
   database: freeschoolplatform_development
   pool: 5
-  username: freeschoolplatform
-  password:
+  username: freeschool
+  password: skool
   host: localhost
 
 # Warning: The database defined as "test" will be erased and

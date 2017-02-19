@@ -22,7 +22,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'administrate'
+gem "administrate", "~> 0.3.0"
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'bourbon'
 gem 'devise'
@@ -30,6 +30,7 @@ gem 'devise_invitable'
 gem 'mysql2', '~> 0.3.18'
 gem 'pundit'
 gem 'therubyracer', :platform=>:ruby
+gem 'sir_trevor_rails'
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Course Proposals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Proposed by</th>
+      <th>Site</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @course_proposals.each do |course_proposal| %>
+      <tr>
+        <td><%= course_proposal.email %></td>
+        <td><%= course_proposal.proposed_by %></td>
+        <td><%= course_proposal.site %></td>
+        <td><%= link_to 'Show', course_proposal %></td>
+        <td><%= link_to 'Edit', edit_course_proposal_path(course_proposal) %></td>
+        <td><%= link_to 'Destroy', course_proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Course Proposal', new_course_proposal_path %>

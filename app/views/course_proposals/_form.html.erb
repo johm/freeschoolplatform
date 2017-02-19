@@ -1,0 +1,32 @@
+<%= form_for(course_proposal) do |f| %>
+  <% if course_proposal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(course_proposal.errors.count, "error") %> prohibited this course_proposal from being saved:</h2>
+
+      <ul>
+      <% course_proposal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :proposed_by %>
+    <%= f.text_field :proposed_by %>
+  </div>
+
+  <div class="field">
+    <%= f.label :site_id %>
+    <%= f.text_field :site_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

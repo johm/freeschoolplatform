@@ -1,0 +1,2 @@
+class CourseProposalQuestion < ApplicationRecord
+end

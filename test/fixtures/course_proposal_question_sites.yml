@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_proposal_question: one
+  site: one
+
+two:
+  course_proposal_question: two
+  site: two
