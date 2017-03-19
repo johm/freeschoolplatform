@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :courses
     resources :locations
     resources :pages
+    resources :menus
+    resources :menu_pages
     root to: "courses#index"
 
 

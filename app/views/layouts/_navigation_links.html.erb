@@ -1,4 +1,6 @@
 <%# add navigation links to this file %>
+<% @site.menus.where(:name=>"Main").first.menu_pages.each do |mp| %>
 <li class="nav-item">
-  <a class="nav-link" href="/">hi</a>
+  <%= link_to mp.page.name,mp.page, {class: "nav-link"} %>
 </li>
+<% end %>

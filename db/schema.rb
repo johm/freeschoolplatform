@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170304163615) do
+ActiveRecord::Schema.define(version: 20170319223129) do
 
   create_table "course_course_series", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "course_id"
@@ -48,11 +48,9 @@ ActiveRecord::Schema.define(version: 20170304163615) do
   end
 
   create_table "course_proposals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "email"
-    t.string   "proposed_by"
     t.integer  "site_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["site_id"], name: "index_course_proposals_on_site_id", using: :btree
   end
 
@@ -104,6 +102,24 @@ ActiveRecord::Schema.define(version: 20170304163615) do
     t.text     "address",     limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "menu_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "menu_id"
+    t.integer  "page_id"
+    t.integer  "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_id"], name: "index_menu_pages_on_menu_id", using: :btree
+    t.index ["page_id"], name: "index_menu_pages_on_page_id", using: :btree
+  end
+
+  create_table "menus", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name"
+    t.integer  "site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_menus_on_site_id", using: :btree
   end
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -187,6 +203,9 @@ ActiveRecord::Schema.define(version: 20170304163615) do
   add_foreign_key "course_registrations", "courses"
   add_foreign_key "course_registrations", "users"
   add_foreign_key "course_series", "sites"
+  add_foreign_key "menu_pages", "menus"
+  add_foreign_key "menu_pages", "pages"
+  add_foreign_key "menus", "sites"
   add_foreign_key "pages", "sites"
   add_foreign_key "role_users", "roles"
   add_foreign_key "role_users", "users"

@@ -32,7 +32,10 @@ gem 'pundit'
 gem 'therubyracer', :platform=>:ruby
 gem 'sir_trevor_rails'
 gem 'paperclip'
-gem 'acts_as_list'
+gem 'cocoon'
+gem "administrate-field-nested_has_many",
+      git: "https://github.com/NedelescuVlad/administrate-field-nested_has_many"
+
 
 group :development do
   gem 'better_errors'

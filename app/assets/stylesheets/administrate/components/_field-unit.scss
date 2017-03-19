@@ -2,7 +2,7 @@
   @include clearfix;
   @include fill-parent;
   align-items: center;
-  display: flex;
+  display: block;
   margin-bottom: $base-spacing;
   position: relative;
 }
@@ -14,4 +14,25 @@
 
 .field-unit__field {
   @include span-columns(5 of 12);
+}
+
+.field-unit--nested-has-many {
+width: 80%;
+padding:5px;
+border: 1px solid #ccc;
+margin-left:5%;
+margin-right:10px;
+padding-top:10px;
+.remove_fields {
+margin-left:14%;
+position:relative;
+top:-15px;
+}
+}
+
+.nested-fields .nested-fields {
+border-top:1px solid #ccc;
+border-bottom:1px solid #ccc;
+margin-bottom:5px;
+padding-top:5px;
 }
