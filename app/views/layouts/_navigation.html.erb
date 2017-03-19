@@ -1,19 +1,28 @@
 <%# navigation styled for Bootstrap 4.0 %>
-<div class="container">
-  <nav class="navbar navbar-dark bg-inverse">
-    <ul class="nav navbar-nav clearfix">
-      <li class="nav-item">
-        <button class="navbar-toggler hidden-sm-up nav-link" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
-          &#9776;
-        </button>
-      </li>
-    </ul>
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="/"><%= @site.name %></a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+        <%= render 'layouts/navigation_links' %>
+        <%= render 'layouts/nav_links_for_auth' %>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+
     <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
       <%= link_to "Rails bootstrap", root_path, class: 'navbar-brand' %>
       <ul class="nav navbar-nav">
-        <%= render 'layouts/navigation_links' %>
-        <%= render 'layouts/nav_links_for_auth' %>
+
       </ul>
     </div>
   </nav>
-</div>
+

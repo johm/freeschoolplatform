@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217214630) do
+ActiveRecord::Schema.define(version: 20170304163615) do
 
   create_table "course_course_series", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "course_id"
@@ -132,8 +132,20 @@ ActiveRecord::Schema.define(version: 20170217214630) do
 
   create_table "sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "domain"
+    t.integer  "homepage_id"
+    t.index ["homepage_id"], name: "index_sites_on_homepage_id", using: :btree
+  end
+
+  create_table "uploaded_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "the_file_file_name"
+    t.string   "the_file_content_type"
+    t.integer  "the_file_file_size"
+    t.datetime "the_file_updated_at"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

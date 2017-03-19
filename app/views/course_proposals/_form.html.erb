@@ -11,22 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+  <div class="form-group">
+    <%= f.label :proposed_by,"Your name" %>
+    <%= f.text_field :proposed_by,:class=>"form-control","aria-describedby"=>"proposed_byHelp" %>
+    <small id="proposed_byHelp" class="form-text text-muted">Let us know who you are!</small>
   </div>
 
-  <div class="field">
-    <%= f.label :proposed_by %>
-    <%= f.text_field :proposed_by %>
+  <div class="form-group">
+    <%= f.label :email,"Your email" %>
+    <%= f.text_field :email , :class=>"form-control","aria-describedby"=>"emailHelp" %>
+    <small id="emailHelp" class="form-text text-muted">How can we contact you?</small>
   </div>
 
-  <div class="field">
-    <%= f.label :site_id %>
-    <%= f.text_field :site_id %>
-  </div>
+  <%= f.submit class: "btn btn-primary"%>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

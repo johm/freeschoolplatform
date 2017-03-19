@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="site_<%= @site.id %>">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Freeschoolplatform" %></title>
@@ -9,12 +9,11 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
+    <%= render 'layouts/navigation' %>
     <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
+      <%= @site %>
+      <%= render 'layouts/messages' %>
+      <%= yield %>
     </main>
   </body>
 </html>

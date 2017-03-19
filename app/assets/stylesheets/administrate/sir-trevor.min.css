@@ -18,3 +18,10 @@ sir-trevor-icons.svg.st-block-control-ui-btn,.st-block-ui-btn__delete,.st-block-
 .st-outer {margin-top:100px;margin-bottom:100px;}
 
 ul.st-list-block__list {list-style-type:disc !important};
+
+
+.field-unit--text {
+align-items: flex-start;
+
+ .field-unit__field {width:80%;border:1px solid #bbb;}
+}

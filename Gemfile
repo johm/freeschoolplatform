@@ -31,6 +31,9 @@ gem 'mysql2', '~> 0.3.18'
 gem 'pundit'
 gem 'therubyracer', :platform=>:ruby
 gem 'sir_trevor_rails'
+gem 'paperclip'
+gem 'acts_as_list'
+
 group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil

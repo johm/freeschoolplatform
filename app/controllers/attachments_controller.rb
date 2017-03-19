@@ -1,8 +1,10 @@
 class AttachmentsController < ApplicationController
   def create
-    uploader = SirTrevorImageUploader.new
-    if uploader.store! params[:attachment][:file]
-      render json: { file: { url: uploader.url } }, status: 200
+    #TK AUTHORIZATION
+    uf=UploadedFile.new()
+    uf.the_file=params[:attachment][:file]
+    if uf.save!
+      render json: { file: { url: uf.the_file.url(:medium) } }, status: 200
     else
       render :json => uploader.errors, status: 422
     end 

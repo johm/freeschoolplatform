@@ -25,7 +25,6 @@ class PageDashboard < Administrate::BaseDashboard
     :site,
     :id,
     :name,
-    :body,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -34,7 +33,6 @@ class PageDashboard < Administrate::BaseDashboard
     :site,
     :id,
     :name,
-    :body,
     :created_at,
     :updated_at,
   ].freeze
@@ -51,7 +49,7 @@ class PageDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how pages are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(page)
-  #   "Page ##{page.id}"
-  # end
+  def display_resource(page)
+   "Page: #{page.name} [#{page.site.name}]"
+  end
 end
