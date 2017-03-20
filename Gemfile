@@ -33,6 +33,8 @@ gem 'therubyracer', :platform=>:ruby
 gem 'sir_trevor_rails'
 gem 'paperclip'
 gem 'cocoon'
+gem 'mailgun_rails'
+
 gem "administrate-field-nested_has_many",
       git: "https://github.com/NedelescuVlad/administrate-field-nested_has_many"
 
