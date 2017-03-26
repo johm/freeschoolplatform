@@ -4,7 +4,8 @@ body {
   padding-top:60px;
 }
 
-
+label {font-weight:600;}
+.form-text {margin-top:0px;}
 
 div {
   &.field, &.actions {
@@ -23,7 +24,7 @@ div {
 }
 
 #error_explanation {
-  width: 450px;
+
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;

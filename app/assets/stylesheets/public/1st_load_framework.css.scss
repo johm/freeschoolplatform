@@ -66,8 +66,9 @@ section {
 }
 .authform form {
   @extend .card;
-  @extend .col-md-9;
-  padding-bottom: 40px;
+  @extend .col-md-12;
+  padding-bottom: 20px;
+  padding-top: 20px;
   @extend .bg-faded;
   @extend .small;
 }
@@ -93,3 +94,13 @@ section {
   @extend .btn-primary;
   @extend .btn-sm;
 }
+
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+

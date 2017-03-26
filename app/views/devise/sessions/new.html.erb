@@ -1,28 +1,45 @@
-<div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
-    <h3>Sign in</h3>
-    <%= devise_error_messages! %>
-    <div class="form-group">
-      <%- if devise_mapping.registerable? %>
+<% if session[:destination] == "new_course_proposal" %>
+<div class="lead">
+  In order to propose a course, first let us know who you are and how to reach you via email.  Creating an account will also let you connect with your learners if the course is approved. (If you already have an account, just <a href="#signin">sign in</a> below!)
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-5">
+    <%= render :file => "/devise/registrations/new" %>
+  </div>
+  <div class="col-sm-2" style="text-align:center;">
+    <div class="lead pt-sm-5 mt-sm-5 mt-4">-or-</div>
+  </div>
+  <div class="col-sm-5">
+    <div class="authform">
+      <a name="signin"></a>
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+      <h3>Sign in</h3>
+      <%= devise_error_messages! %>
+      <div class="form-group">
+	<%- if devise_mapping.registerable? %>
         <%= link_to 'Sign up', new_registration_path(resource_name), class: 'right'  %>
-      <% end -%>
-      <%= f.label :email %>
-      <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%- if devise_mapping.recoverable? %>
+	<% end -%>
+	<%= f.label :email %>
+	<%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+	<%- if devise_mapping.recoverable? %>
         <%= link_to "Forgot password?", new_password_path(resource_name), class: 'right' %>
-      <% end -%>
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-    </div>
+	<% end -%>
+	<%= f.label :password %>
+	<%= f.password_field :password, class: 'form-control' %>
+      </div>
       <%= f.submit 'Sign in', :class => 'button right' %>
       <% if devise_mapping.rememberable? -%>
-        <div class="checkbox" style="width:150px">
-          <label>
-            <%= f.check_box :remember_me %> Remember me
-          </label>
-        </div>
+      <div class="checkbox" style="width:150px">
+        <label>
+          <%= f.check_box :remember_me %> Remember me
+        </label>
+      </div>
       <% end -%>
-  <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>

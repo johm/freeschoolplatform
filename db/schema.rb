@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319223129) do
+ActiveRecord::Schema.define(version: 20170326193109) do
 
   create_table "course_course_series", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "course_id"
@@ -49,9 +49,15 @@ ActiveRecord::Schema.define(version: 20170319223129) do
 
   create_table "course_proposals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "site_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "title"
+    t.text     "description", limit: 65535
+    t.text     "background",  limit: 65535
+    t.text     "scheduling",  limit: 65535
+    t.integer  "user_id"
     t.index ["site_id"], name: "index_course_proposals_on_site_id", using: :btree
+    t.index ["user_id"], name: "index_course_proposals_on_user_id", using: :btree
   end
 
   create_table "course_registrations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -191,15 +197,18 @@ ActiveRecord::Schema.define(version: 20170319223129) do
     t.string   "invited_by_type"
     t.integer  "invited_by_id"
     t.integer  "invitations_count",      default: 0
+    t.integer  "site_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
     t.index ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["site_id"], name: "index_users_on_site_id", using: :btree
   end
 
   add_foreign_key "course_proposal_question_answers", "course_proposal_questions"
   add_foreign_key "course_proposal_question_answers", "course_proposals"
+  add_foreign_key "course_proposals", "users"
   add_foreign_key "course_registrations", "courses"
   add_foreign_key "course_registrations", "users"
   add_foreign_key "course_series", "sites"
@@ -209,4 +218,5 @@ ActiveRecord::Schema.define(version: 20170319223129) do
   add_foreign_key "pages", "sites"
   add_foreign_key "role_users", "roles"
   add_foreign_key "role_users", "users"
+  add_foreign_key "users", "sites"
 end

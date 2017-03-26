@@ -9,9 +9,12 @@ class CourseProposalDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     site: Field::BelongsTo,
+    user: Field::BelongsTo,
     id: Field::Number,
-    email: Field::String,
-    proposed_by: Field::String,
+    title: Field::String,
+    description: Field::Text,
+    background: Field::Text,
+    scheduling: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -22,10 +25,9 @@ class CourseProposalDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :site,
-    :id,
-    :email,
-    :proposed_by,
+    :user,
+    :title,
+    :created_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -33,8 +35,11 @@ class CourseProposalDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :site,
     :id,
-    :email,
-    :proposed_by,
+    :title,
+    :user,
+    :description,
+    :background,
+    :scheduling,
     :created_at,
     :updated_at,
   ].freeze
@@ -44,8 +49,11 @@ class CourseProposalDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :site,
-    :email,
-    :proposed_by,
+    :title,
+    :user,
+    :description,
+    :background,
+    :scheduling
   ].freeze
 
   # Overwrite this method to customize how course proposals are displayed

@@ -1,19 +1,19 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @course_proposal.email %>
-</p>
+<p class="lead">Here's what you proposed! We will be in touch soon over email to let you know if the course has been approved, and to coordinate scheduling and other details.</p>
 
-<p>
-  <strong>Proposed by:</strong>
-  <%= @course_proposal.proposed_by %>
-</p>
+<h1><%= @course_proposal.title %></h1>
+<h3>Description</h3>
+<hr/>
+<%= @course_proposal.description %>
 
-<p>
-  <strong>Site:</strong>
-  <%= @course_proposal.site %>
-</p>
+<h3 class="mt-4">Background</h3>
+<hr/>
+<%= @course_proposal.background %>
 
-<%= link_to 'Edit', edit_course_proposal_path(@course_proposal) %> |
-<%= link_to 'Back', course_proposals_path %>
+
+<h3 class="mt-4">Scheduling</h3>
+<hr/>
+<%= @course_proposal.scheduling %>
+
+<div class="mt-5"><%= link_to 'Edit', edit_course_proposal_path(@course_proposal),:class => "btn btn-primary" %></div>
+

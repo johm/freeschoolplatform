@@ -1,14 +1,14 @@
-class CourseProposalPolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
   def create?
-    user.present?
+    true
   end
 
   def new?
-    create?
+    true
   end
 
   def edit?
-    user == record.user || (user.admin?  && user.site = record.site )
+    user == record || (user.admin?  && user.site = record.site )
   end
 
   def update?
