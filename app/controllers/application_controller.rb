@@ -1,3 +1,4 @@
+
 class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :exception
@@ -5,10 +6,16 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def pundit_user
+    UserContext.new(current_user, @site)
+  end
+
 
   def after_sign_in_path_for(resource)
     if session[:destination] == "new_course_proposal"
       "/course_proposals/new"
+    elsif session[:destination].start_with?("/courses/")
+      session[:destination]
     else
       stored_location_for(resource) || root_path
     end

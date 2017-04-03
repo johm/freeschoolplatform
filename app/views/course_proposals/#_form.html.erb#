@@ -1,0 +1,49 @@
+<%= form_for(course_proposal) do |f| %>
+  <% if course_proposal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(course_proposal.errors.count, "error") %> prohibited this course_proposal from being saved:</h2>
+      <ul>
+      <% course_proposal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+
+    <div class="field">
+      <%= f.label :title %>
+      <p id="titleHelpBlock" class="form-text text-muted small">
+	Suggest a name for your proposed course or workshop.
+      </p>
+      <%= f.text_field :title , class: "form-control","aria-describedby" => "titleHelpBlock"  %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %>
+      <p id="descriptionHelpBlock" class="form-text text-muted small">
+	How would you describe your course to a potential learner?
+      </p>
+      <%= f.text_area :description , class: "form-control","aria-describedby" => "descriptionHelpBlock",:rows=>10  %>
+    </div>
+
+    <div class="field">
+      <%= f.label :background %>
+      <p id="backgroundHelpBlock" class="form-text text-muted small">
+	(Optional) Tell us anything we need to know about who you are and why you want to teach this course.  We won't display this information publicly.
+      </p>
+      <%= f.text_area :background , class: "form-control","aria-describedby" => "backgroundHelpBlock"  %>
+    </div>
+
+    <div class="field">
+      <%= f.label :scheduling %>
+      <p id="schedulingHelpBlock" class="form-text text-muted small">
+	Let us know when you want to teach this course.  Is this a one-time session?  If not, how frequently do you want to meet? What are some ideal days and times for you?
+      </p>
+      <%= f.text_area :scheduling , class: "form-control","aria-describedby" => "schedulingHelpBlock"  %>
+    </div>
+
+
+  <%= f.submit "Propose your course!", class: "btn btn-primary"%>
+
+<% end %>

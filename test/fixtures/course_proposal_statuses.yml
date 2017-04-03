@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  proposal_status: MyString
+  course_proposal: one
+  user: one
+
+two:
+  proposal_status: MyString
+  course_proposal: two
+  user: two

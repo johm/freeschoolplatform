@@ -3,35 +3,21 @@ class CourseRegistrationsController < ApplicationController
 
   # GET /course_registrations
   # GET /course_registrations.json
-  def index
-    @course_registrations = CourseRegistration.all
-  end
-
-  # GET /course_registrations/1
-  # GET /course_registrations/1.json
-  def show
-  end
-
-  # GET /course_registrations/new
-  def new
-    @course_registration = CourseRegistration.new
-  end
-
-  # GET /course_registrations/1/edit
-  def edit
-  end
 
   # POST /course_registrations
   # POST /course_registrations.json
   def create
     @course_registration = CourseRegistration.new(course_registration_params)
+    @course_registration.user=current_user
+    session[:destination] = "/courses/#{@course_registration.course.id}"
+    authorize @course_registration
 
     respond_to do |format|
       if @course_registration.save
-        format.html { redirect_to @course_registration, notice: 'Course registration was successfully created.' }
+        format.html { redirect_to @course_registration.course, notice: 'You successfully registered for this course.' }
         format.json { render :show, status: :created, location: @course_registration }
       else
-        format.html { render :new }
+        format.html { redirect_to @course_registration.course, warning: 'Problem registering for this course.' }
         format.json { render json: @course_registration.errors, status: :unprocessable_entity }
       end
     end
@@ -39,24 +25,14 @@ class CourseRegistrationsController < ApplicationController
 
   # PATCH/PUT /course_registrations/1
   # PATCH/PUT /course_registrations/1.json
-  def update
-    respond_to do |format|
-      if @course_registration.update(course_registration_params)
-        format.html { redirect_to @course_registration, notice: 'Course registration was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course_registration }
-      else
-        format.html { render :edit }
-        format.json { render json: @course_registration.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /course_registrations/1
   # DELETE /course_registrations/1.json
   def destroy
+    authorize @course_registration
+    course=@course_registration.course
     @course_registration.destroy
     respond_to do |format|
-      format.html { redirect_to course_registrations_url, notice: 'Course registration was successfully destroyed.' }
+      format.html { redirect_to course, notice: 'You successfully cancelled your registration.' }
       format.json { head :no_content }
     end
   end
@@ -71,4 +47,16 @@ class CourseRegistrationsController < ApplicationController
     def course_registration_params
       params.require(:course_registration).permit(:course_id, :user_id)
     end
+
+    def user_not_authorized
+      if session[:destination]
+        flash[:alert] = "You need to create an account or sign in to register for a course." 
+        redirect_to("/users/sign_in");
+      else
+        flash[:alert] = "You don't have permission to do this."
+        redirect_to(root_path);
+      end
+    end
+
+
 end

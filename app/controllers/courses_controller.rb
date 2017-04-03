@@ -4,12 +4,13 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = Course.all.where(:published=>true)
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
+    authorize @course
   end
 
   # GET /courses/new

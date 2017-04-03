@@ -29,6 +29,32 @@ module Admin
       super
     end
 
+
+    def reject 
+      authorize requested_resource
+      requested_resource.course_proposal_statuses << CourseProposalStatus.new(:user=>current_user,:proposal_status=>"Rejected")
+      redirect_to admin_course_proposal_path(requested_resource)
+    end
+
+    def defer 
+      authorize requested_resource
+      requested_resource.course_proposal_statuses << CourseProposalStatus.new(:user=>current_user,:proposal_status=>"More Info Needed")
+      redirect_to admin_course_proposal_path(requested_resource)
+    end
+
+    def approve 
+      authorize requested_resource
+      requested_resource.course_proposal_statuses << CourseProposalStatus.new(:user=>current_user,:proposal_status=>"Approve")
+      course=Course.new(:homesite => requested_resource.site,
+                        :instructor => requested_resource.user, 
+                        :name => requested_resource.title, 
+                        :full_description=> {:data =>[{:type=>"text",:data=>{:format=>"html",:text => requested_resource.description}}]}.to_json)
+      course.save!
+      redirect_to edit_admin_course_path(course)
+    end
+
+
+
     # Define a custom finder by overriding the `find_resource` method:
     # def find_resource(param)
     #   CourseProposal.find_by!(slug: param)

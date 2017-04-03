@@ -9,6 +9,7 @@ SirTrevor.setDefaults({
 });
 
 
+
  var editor = new SirTrevor.Editor({
     el: document.querySelector('#page_body,#course_full_description'),
     defaultType: 'Text',

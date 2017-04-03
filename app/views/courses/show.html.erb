@@ -1,34 +1,65 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
-
-<p>
-  <strong>Very short description:</strong>
+<h1>
+  <%= @course.name %> 
+  <% unless @course.published? %><span class="badge badge-warning">Not published</span> <% end %>
+  <% if @course.instructor==current_user %><span class="badge badge-success">I'm teaching this!</span> <% end %>
+</h1>
+<p class="lead">
   <%= @course.very_short_description %>
 </p>
 
-<p>
-  <strong>Full description:</strong>
-  <%= @course.full_description %>
-</p>
+<div class="card card-outline-secondary mb-3 ">
+  <div class="card-block">
+    <dl class="row">
+      <dt class="col-sm-2">Location</dt>
+      <dd class="col-sm-10"><%= link_to @course.location.name, @course.location %></dd>
+      <dt class="col-sm-2">Instructor</dt>
+      <dd class="col-sm-10"><%= @course.instructor.name %></dd>
+      <dt class="col-sm-2">Sessions</dt>
+      <dd class="col-sm-10">
+	<% @course.course_sessions.each do |cs| %>
+	TK
+	<% end %>
+      </dd>
+       <% if @course.instructor==current_user || current_user.admin? %>
+      <dt class="col-sm-2">Learners</dt>
+      <dd class="col-sm-10">
+	<table class="table table-sm">
+	  <tr><th>Name</th><th>Email</th></tr>
+	  <% @course.learners.each do |x| %>
+	  <tr>
+	    <td><%= x.name %></td>
+	    <td><%= x.email %></td>
+	  </tr>
+	  <% end %>
+	</table>
+      </dd>
+      <% end %>
+    </dl>
+  </div>
+</div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @course.location %>
-</p>
+<div class="m-b-3"> 
+<% if current_user.courses_registered_for.include? @course  %>
+  <%= link_to "Cancel your registration for this course",current_user.course_registrations.where(:course=>@course).first, method: :delete, class: "btn btn-outline-warning btn-block" %>
+<% else %>
+  <%= form_for(CourseRegistration.new(:course=>@course)) do |f| %>
+  <%= f.hidden_field :course_id %>
+  <%= f.submit "Register for this course",class: "btn btn-outline-primary btn-block" %>
+  <% end %>
+<% end %>
+  &nbsp;
+</div>
 
-<p>
-  <strong>Instructor:</strong>
-  <%= @course.instructor %>
-</p>
+<div class="sharethis-inline-share-buttons"></div>
+<div class="m-b-3">&nbsp;</div>
 
-<p>
-  <strong>Homesite:</strong>
-  <%= @course.homesite %>
-</p>
+<%= render @course.full_description %>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<% content_for :title do %>
+<%= @site.name %>: <%= @course.name %>
+<% end %>
+
+<% content_for :description do %>
+  <%= @course.very_short_description %>
+<% end %>

@@ -17,6 +17,12 @@ Rails.application.routes.draw do
     resources :pages
     resources :menus
     resources :menu_pages
+    resources :sites
+    post 'course_proposals/:id/reject', to: "course_proposals#reject",:as => "reject_course_proposal_admin_course_proposal"
+    post 'course_proposals/:id/defer', to: "course_proposals#defer",:as => "defer_course_proposal_admin_course_proposal"
+    post 'course_proposals/:id/approve', to: "course_proposals#approve",:as => "approve_course_proposal_admin_course_proposal"
+
+    
     root to: "courses#index"
   end
   resources :attachments

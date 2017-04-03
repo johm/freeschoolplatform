@@ -1,14 +1,26 @@
 class CourseProposalPolicy < ApplicationPolicy
   def create?
-    user.present?
+    context.user.present?
   end
 
   def new?
     create?
   end
 
+  def reject?
+    (context.user.admin?  && context.user.site = record.site )
+  end
+
+  def approve?
+    reject?
+  end
+  
+  def defer?
+    reject?
+  end
+
   def edit?
-    user == record.user || (user.admin?  && user.site = record.site )
+    context.user == record.user || (context.user.admin?  && context.user.site = record.site )
   end
 
   def update?

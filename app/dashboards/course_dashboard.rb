@@ -13,6 +13,7 @@ class CourseDashboard < Administrate::BaseDashboard
     homesite: Field::BelongsTo.with_options(class_name: "Site"),
     id: Field::Number,
     name: Field::String,
+    published: Field::Boolean,
     very_short_description: Field::Text,
     full_description: Field::Text,
     created_at: Field::DateTime,
@@ -25,10 +26,11 @@ class CourseDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
+    :name,                       
     :location,
     :instructor,
     :homesite,
-    :id,
+    :published,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -38,9 +40,8 @@ class CourseDashboard < Administrate::BaseDashboard
     :instructor,
     :homesite,
     :id,
-    :name,
+    :published,
     :very_short_description,
-    :full_description,
     :created_at,
     :updated_at,
   ].freeze
@@ -53,6 +54,7 @@ class CourseDashboard < Administrate::BaseDashboard
     :instructor,
     :homesite,
     :name,
+    :published, 
     :very_short_description,
     :full_description,
   ].freeze
@@ -60,7 +62,7 @@ class CourseDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how courses are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(course)
-  #   "Course ##{course.id}"
-  # end
+  def display_resource(course)
+    "#{course.name}"
+  end
 end

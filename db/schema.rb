@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326193109) do
+ActiveRecord::Schema.define(version: 20170402231420) do
 
   create_table "course_course_series", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "course_id"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 20170326193109) do
     t.text     "help_text",  limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "course_proposal_statuses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "proposal_status"
+    t.integer  "course_proposal_id"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["course_proposal_id"], name: "index_course_proposal_statuses_on_course_proposal_id", using: :btree
+    t.index ["user_id"], name: "index_course_proposal_statuses_on_user_id", using: :btree
   end
 
   create_table "course_proposals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -97,9 +107,19 @@ ActiveRecord::Schema.define(version: 20170326193109) do
     t.integer  "homesite_id"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.boolean  "published"
     t.index ["homesite_id"], name: "index_courses_on_homesite_id", using: :btree
     t.index ["instructor_id"], name: "index_courses_on_instructor_id", using: :btree
     t.index ["location_id"], name: "index_courses_on_location_id", using: :btree
+  end
+
+  create_table "crosslistings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "course_id"
+    t.integer  "site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_crosslistings_on_course_id", using: :btree
+    t.index ["site_id"], name: "index_crosslistings_on_site_id", using: :btree
   end
 
   create_table "locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -208,10 +228,14 @@ ActiveRecord::Schema.define(version: 20170326193109) do
 
   add_foreign_key "course_proposal_question_answers", "course_proposal_questions"
   add_foreign_key "course_proposal_question_answers", "course_proposals"
+  add_foreign_key "course_proposal_statuses", "course_proposals"
+  add_foreign_key "course_proposal_statuses", "users"
   add_foreign_key "course_proposals", "users"
   add_foreign_key "course_registrations", "courses"
   add_foreign_key "course_registrations", "users"
   add_foreign_key "course_series", "sites"
+  add_foreign_key "crosslistings", "courses"
+  add_foreign_key "crosslistings", "sites"
   add_foreign_key "menu_pages", "menus"
   add_foreign_key "menu_pages", "pages"
   add_foreign_key "menus", "sites"

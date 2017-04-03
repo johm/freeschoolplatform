@@ -1,0 +1,4 @@
+<h1>Propose a course</h1>
+
+<%= render 'form', course_proposal: @course_proposal %>
+
