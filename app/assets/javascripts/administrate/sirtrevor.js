@@ -15,3 +15,5 @@ SirTrevor.setDefaults({
     defaultType: 'Text',
     iconUrl: '/assets/sir-trevor-icons.svg'
   });
+
+   document.body.scrollTop = document.documentElement.scrollTop = 0;

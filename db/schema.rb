@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402231420) do
+ActiveRecord::Schema.define(version: 20170408224157) do
 
   create_table "course_course_series", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "course_id"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 20170402231420) do
     t.index ["course_proposal_question_id"], name: "index_cpqa", using: :btree
   end
 
+  create_table "course_proposal_question_options", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "option"
+    t.integer  "course_proposal_question_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["course_proposal_question_id"], name: "cpqi", using: :btree
+  end
+
   create_table "course_proposal_question_sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "course_proposal_question_id"
     t.integer  "site_id"
@@ -45,6 +53,8 @@ ActiveRecord::Schema.define(version: 20170402231420) do
     t.text     "help_text",  limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "site_id"
+    t.index ["site_id"], name: "index_course_proposal_questions_on_site_id", using: :btree
   end
 
   create_table "course_proposal_statuses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -95,6 +105,7 @@ ActiveRecord::Schema.define(version: 20170402231420) do
     t.datetime "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "approved"
     t.index ["course_id"], name: "index_course_sessions_on_course_id", using: :btree
   end
 

@@ -16,9 +16,46 @@
 
 }
 
+$salmon: #F8A084;
+$brick:  #8E191B;
+$aqua: #76CABF;
+$darkblue: #2F1749;
 
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i,800,800i');		
 .site_2 {
+    body {
+	
+	#homepagebanner {background-image:url("/assets/banner-nake.jpg");height:50vh;background-size: auto 100%;background-position:center;background-repeat:no-repeat;background-color:$aqua;}
+	
+	padding-top:100px;
+	font-family: 'Open Sans', sans-serif;
+	.bg-inverse {background-color:inherit !important;}
+	.navbar-inverse {
+	    .navbar-brand img {height:80px;width:auto;}
+	    .navbar-nav {
+		.nav-link {color:$salmon;text-transform:uppercase;font-weight:600;border-bottom:3px solid white;}
+		.nav-link:hover,.nav-link.active {color:$brick;border-bottom:3px solid $brick;}
+	    }
+	}
 
+	.btn-primary {background-color: $aqua;border-color: $aqua;}
+	.btn-primary:hover {border-color:grey;}
+	
+	.btn-info {background-color: $salmon;border-color: $salmon;}
+	.btn-info:hover {border-color:grey;}
+	
 
+	h1 {text-transform:uppercase;font-weight:700;color:$salmon;}
+	h4,h4 a {text-transform:uppercase;font-weight:700;color:$brick;}
 
+	.st__content-block--heading {font-weight:600;color:$brick; font-variant: small-caps;border-bottom: 1px solid #ddd;text-transform:lowercase;}
+
+	h6,h6 a {text-transform:uppercase;color:$darkblue;}
+	p a {color: $brick; }
+
+	.navbar-toggler {background-color:$salmon;}
+	
+    }
+    
+    
 }

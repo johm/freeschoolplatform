@@ -8,7 +8,7 @@ class Course < ApplicationRecord
   has_many :crosslisting_sites,:through=>"crosslistings",:source=>:site
   has_many :course_registrations
   has_many :learners,:through => :course_registrations,:source=>:user
-
+  accepts_nested_attributes_for :course_sessions
 
   def is_listed_on_site?(site)
     homesite==site || crosslisting_sites.include?(site)

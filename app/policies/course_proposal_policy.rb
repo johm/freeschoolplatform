@@ -20,7 +20,7 @@ class CourseProposalPolicy < ApplicationPolicy
   end
 
   def edit?
-    context.user == record.user || (context.user.admin?  && context.user.site = record.site )
+    (context.user.admin?  && context.user.site = record.site ) || context.user == record.user 
   end
 
   def update?

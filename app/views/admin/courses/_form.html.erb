@@ -32,6 +32,9 @@ and renders all form fields for a resource's editable attributes.
 
   <% page.attributes.each do |attribute| -%>
     <div class="field-unit field-unit--<%= attribute.html_class %>">
+      <% if attribute.html_class == 'nested-has-many' %>
+      <%= f.label attribute.name %>
+      <% end %>
       <%= render_field attribute, f: f %>
     </div>
   <% end -%>

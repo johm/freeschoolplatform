@@ -19,6 +19,9 @@ class CourseProposalsController < ApplicationController
   def new
     session[:destination] = "new_course_proposal"
     @course_proposal = CourseProposal.new
+    @site.course_proposal_questions.each do |cpq|
+      @course_proposal.course_proposal_question_answers.build(:course_proposal_question=>cpq)
+    end
     authorize @course_proposal
     session[:destination] = nil
   end
@@ -81,7 +84,7 @@ class CourseProposalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_proposal_params
-      params.require(:course_proposal).permit(:title,:description,:background,:scheduling)
+      params.require(:course_proposal).permit(:title,:description,:background,:scheduling,:course_proposal_question_answers_attributes => [:id,:answer,:course_proposal_question_id])
     end
       private
 

@@ -11,6 +11,8 @@ class SiteDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     domain: Field::String,
+    homepage: Field::BelongsTo.with_options(class_name: "Page"),
+    course_proposal_questions: Field::NestedHasMany.with_options(skip: :site),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -34,6 +36,7 @@ class SiteDashboard < Administrate::BaseDashboard
     :id,
     :name,
     :domain,
+    :homepage,
     :created_at,
     :updated_at,
   ].freeze
@@ -44,6 +47,8 @@ class SiteDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :name,
     :domain,
+    :homepage,
+    :course_proposal_questions
   ].freeze
 
   # Overwrite this method to customize how sites are displayed

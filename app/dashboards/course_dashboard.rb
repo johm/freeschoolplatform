@@ -15,6 +15,7 @@ class CourseDashboard < Administrate::BaseDashboard
     name: Field::String,
     published: Field::Boolean,
     very_short_description: Field::Text,
+    course_sessions: Field::NestedHasMany.with_options(skip: :course),
     full_description: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -42,6 +43,7 @@ class CourseDashboard < Administrate::BaseDashboard
     :id,
     :published,
     :very_short_description,
+    :course_sessions,
     :created_at,
     :updated_at,
   ].freeze
@@ -56,6 +58,7 @@ class CourseDashboard < Administrate::BaseDashboard
     :name,
     :published, 
     :very_short_description,
+    :course_sessions,
     :full_description,
   ].freeze
 

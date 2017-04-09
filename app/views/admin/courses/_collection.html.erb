@@ -47,7 +47,7 @@ to display a collection of resources in an HTML table.
           <% end %>
         </th>
       <% end %>
-      <th class="cell-label">Learners</th>
+        <th class="cell-label hidenested">Learners</th>
       <th colspan="2" scope="col"></th>
     </tr>
   </thead>
@@ -64,10 +64,9 @@ to display a collection of resources in an HTML table.
             <%= render_field attribute %>
           </td>
         <% end %>
-	<td>
-	  <%= resource.learners.length %>
+	<td class="hidenested">
+	  <%= resource.learners.length rescue resource.course.learners.length%>
 	</td>
-	
         <td><%= link_to(
           t("administrate.actions.edit"),
           [:edit, namespace, resource],

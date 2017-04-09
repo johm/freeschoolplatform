@@ -7,6 +7,15 @@ class PagesController < ApplicationController
     @pages = Page.all
   end
 
+  def homepage 
+    if @site.homepage
+      @page=@site.homepage
+      render :action => "show"
+    else
+      redirect_to courses_url
+    end
+  end
+
   # GET /pages/1
   # GET /pages/1.json
   def show

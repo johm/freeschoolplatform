@@ -11,6 +11,7 @@ class CourseProposalQuestionDashboard < Administrate::BaseDashboard
     id: Field::Number,
     question: Field::Text,
     help_text: Field::Text,
+    course_proposal_question_options: Field::NestedHasMany.with_options(skip: :course_proposal_question),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -43,12 +44,13 @@ class CourseProposalQuestionDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :question,
     :help_text,
+    :course_proposal_question_options
   ].freeze
 
   # Overwrite this method to customize how course proposal questions are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(course_proposal_question)
-  #   "CourseProposalQuestion ##{course_proposal_question.id}"
-  # end
+  def display_resource(course_proposal_question)
+    course_proposal_question.question
+  end
 end

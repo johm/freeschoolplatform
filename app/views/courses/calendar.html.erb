@@ -1,0 +1,12 @@
+
+<div class="monthcalendar">
+<%= month_calendar(attribute: :start, end_attribute: :end,events: @course_sessions) do |date,course_sessions| %>
+<div class="daynumber"><%= date.day %></div>
+<% course_sessions.each do |course_session| %>
+<div>
+  <%= link_to course_session.course.name,course_session.course %>
+  <div class="small"><%= course_session.start.to_formatted_s(:starttimeonly) %> - <%= course_session.end.to_formatted_s(:endtime) %> </div>
+</div>
+<% end %>
+<% end %>
+</div>

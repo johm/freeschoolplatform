@@ -43,6 +43,30 @@
       <%= f.text_area :scheduling , class: "form-control","aria-describedby" => "schedulingHelpBlock"  %>
     </div>
 
+    <hr class="hr"/>
+
+    <%= f.fields_for :course_proposal_question_answers do |answer_form| %>
+      <div class="field">
+	<%= answer_form.hidden_field :course_proposal_question_id,:value=>answer_form.object.course_proposal_question.id  %>
+	<%= answer_form.label :answer, answer_form.object.course_proposal_question.question %>
+	<p id="helpBlock<%= answer_form.object.course_proposal_question.id %>"  class="form-text text-muted small">
+	  <%= answer_form.object.course_proposal_question.help_text %>
+	</p>
+	<% if answer_form.object.course_proposal_question.course_proposal_question_options.length == 0 %> 
+         <%= answer_form.text_area :answer, class: "form-control", "aria-describedby" => "helpBlock#{answer_form.object.course_proposal_question.id}"  %>
+	<% else %>
+	<% answer_form.object.course_proposal_question.course_proposal_question_options.each do |option| %> 
+	<div class="form-check">
+	  <label class="form-check-label">
+	    <%= answer_form.radio_button :answer, option.option, class: "form-check-input", "aria-describedby" => "helpBlock#{answer_form.object.course_proposal_question.id}"  %> 
+	    <%= option.option %>
+	  </label>
+	</div>
+	<% end %>
+	<% end %>
+      </div>
+    <% end %>
+
 
   <%= f.submit "Propose your course!", class: "btn btn-primary"%>
 

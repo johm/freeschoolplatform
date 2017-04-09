@@ -12,6 +12,10 @@ module Admin
     before_filter :set_site
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+    def pundit_user
+      UserContext.new(current_user, @site)
+    end
+
     def authenticate_admin
       redirect_to '/users/sign_in', alert: 'Not authorized.' unless current_user &&  current_user.role == "admin"
     end

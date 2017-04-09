@@ -67,10 +67,12 @@ to display a collection of resources in an HTML table.
         <% end %>
 	
 	<td>
+	  <% if resource.class == CourseProposal %>
 	  <%= content_tag(:span,"Approved",:class=>"Approved") if  resource.approved?  %>
 	  <%= content_tag(:span,"Rejected",:class=>"Rejected") if resource.rejected? %>
 	  <%= content_tag(:span,"More info needed",:class=>"MoreInfoNeeded") if resource.need_more_info? %>
 	  <%= content_tag(:span,"New",:class=>"New") if resource.new? %>
+	  <% end %>
 	</td>
 	
         <td><%= link_to(

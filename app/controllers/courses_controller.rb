@@ -4,13 +4,23 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all.where(:published=>true)
+    @upcoming=true
+    if params[:upcoming]
+      @upcoming=false 
+      @courses = Course.all.where(:published=>true).find_all {|c| c.course_sessions.where("course_sessions.start >= ?",Date.today).length == 0} #TK limit by site
+    else
+      @courses = Course.all.where(:published=>true).joins(:course_sessions).where("course_sessions.start >= ?",Date.today)
+    end
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
     authorize @course
+  end
+
+  def calendar
+    @course_sessions=CourseSession.where(:approved=>true).joins(:course).where(:courses => { :published => true }) #TK limit by date, site
   end
 
   # GET /courses/new

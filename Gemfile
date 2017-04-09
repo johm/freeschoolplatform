@@ -22,7 +22,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem "administrate", "~> 0.3.0"
+#gem "administrate", "~> 0.3.0"
+gem "administrate","~> 0.4.0"   
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'bourbon'
 gem 'devise'
@@ -36,8 +37,14 @@ gem 'cocoon'
 gem 'mailgun_rails'
 
 gem "administrate-field-nested_has_many",
-      git: "https://github.com/NedelescuVlad/administrate-field-nested_has_many"
+     git: "https://github.com/ombulabs/administrate-field-nested_has_many"
+#      git: "https://github.com/NedelescuVlad/administrate-field-nested_has_many"
+gem 'administrate-field-date_picker', '~> 0.0.4'
 
+gem 'validates_timeliness', '~> 4.0'
+
+gem "simple_calendar", "~> 2.0"
+ 
 
 group :development do
   gem 'better_errors'

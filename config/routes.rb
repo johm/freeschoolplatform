@@ -8,11 +8,16 @@ Rails.application.routes.draw do
   resources :course_registrations
   resources :locations
   resources :course_sessions
-  resources :courses
+  resources :courses 
+  get "course_calendar/(:start_date)", to: "courses#calendar"
+  get 'course_archive', to: "courses#index", :upcoming=>true
   namespace :admin do
     resources :users
     resources :course_proposals
+    resources :course_proposal_questions
+    resources :course_proposal_question_answers
     resources :courses
+    resources :course_sessions
     resources :locations
     resources :pages
     resources :menus
@@ -30,6 +35,6 @@ Rails.application.routes.draw do
         registrations: 'users/registrations'
       }
 
-  root :to => 'courses#index'
+  root :to => 'pages#homepage'
 
 end
