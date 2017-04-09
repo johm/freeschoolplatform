@@ -30,7 +30,7 @@ gem 'devise'
 gem 'devise_invitable'
 gem 'mysql2', '~> 0.3.18'
 gem 'pundit'
-gem 'therubyracer', :platform=>:ruby
+#gem 'therubyracer', :platform=>:ruby
 gem 'sir_trevor_rails'
 gem 'paperclip'
 gem 'cocoon'
