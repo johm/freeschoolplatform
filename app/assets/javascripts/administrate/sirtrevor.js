@@ -13,7 +13,7 @@ SirTrevor.setDefaults({
  var editor = new SirTrevor.Editor({
     el: document.querySelector('#page_body,#course_full_description'),
     defaultType: 'Text',
-    iconUrl: '/assets/sir-trevor-icons.svg'
+    iconUrl: '/sir-trevor-icons.svg'
   });
 
    document.body.scrollTop = document.documentElement.scrollTop = 0;
