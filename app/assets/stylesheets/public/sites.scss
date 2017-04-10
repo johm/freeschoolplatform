@@ -25,7 +25,7 @@ $darkblue: #2F1749;
 .site_northavenueknowledgeexchange {
     body {
 	
-	#homepagebanner {background-image:url("/assets/banner-nake.jpg");height:50vh;background-size: auto 100%;background-position:center;background-repeat:no-repeat;background-color:$aqua;}
+	#homepagebanner {background-image:url(image-path("banner-nake.jpg"));height:50vh;background-size: auto 100%;background-position:center;background-repeat:no-repeat;background-color:$aqua;}
 	
 	padding-top:100px;
 	font-family: 'Open Sans', sans-serif;
