@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="site_<%= @site.id %>">
+<html class="site_<%= @site.name.gsub(/[^0-9a-z]/i, '') %>">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Freeschoolplatform" %></title>
