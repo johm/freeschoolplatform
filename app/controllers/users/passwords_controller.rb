@@ -1,4 +1,5 @@
 class Users::PasswordsController < Devise::PasswordsController
+  before_filter :set_site
   # GET /resource/password/new
   # def new
   #   super
@@ -18,6 +19,17 @@ class Users::PasswordsController < Devise::PasswordsController
   # def update
   #   super
   # end
+
+  def set_site 
+    domain = request.env["HTTP_HOST"]
+    begin 
+      @site=Site.find_by! :domain=>domain 
+    rescue
+      @site=Site.first
+    end
+  end
+
+
 
   # protected
 
