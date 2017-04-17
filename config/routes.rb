@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  resources :course_proposal_questions
   resources :course_proposals
-  resources :course_course_series
   resources :course_series
   resources :pages
-  resources :sites
   resources :course_registrations
   resources :locations
   resources :course_sessions
@@ -18,6 +15,7 @@ Rails.application.routes.draw do
     resources :course_proposal_question_answers
     resources :courses
     resources :course_sessions
+    resources :course_series
     resources :locations
     resources :pages
     resources :menus

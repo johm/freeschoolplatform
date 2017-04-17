@@ -1,4 +1,15 @@
 <%# add navigation links to this file %>
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Courses</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="/courses">Upcoming courses and workshops</a>
+      <a class="dropdown-item" href="/course_calendar">Course calendar</a>
+      <a class="dropdown-item" href="/course_proposals/new">Propose a course or workshop</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="/course_archive">Course archive</a>
+    </div>
+</li>
 <% @site.menus.where(:name=>"Main").first.menu_pages.each do |mp| %>
 <li class="nav-item">
   <%= link_to mp.page.name,mp.page, {class: "nav-link"} %>

@@ -5,60 +5,15 @@ class CourseSessionsController < ApplicationController
   # GET /course_sessions.json
   def index
     @course_sessions = CourseSession.all
+    respond_to do |format|
+      format.html { redirect_to courses_url}
+    end
   end
 
   # GET /course_sessions/1
   # GET /course_sessions/1.json
   def show
-  end
-
-  # GET /course_sessions/new
-  def new
-    @course_session = CourseSession.new
-  end
-
-  # GET /course_sessions/1/edit
-  def edit
-  end
-
-  # POST /course_sessions
-  # POST /course_sessions.json
-  def create
-    @course_session = CourseSession.new(course_session_params)
-
-    respond_to do |format|
-      if @course_session.save
-        format.html { redirect_to @course_session, notice: 'Course session was successfully created.' }
-        format.json { render :show, status: :created, location: @course_session }
-      else
-        format.html { render :new }
-        format.json { render json: @course_session.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /course_sessions/1
-  # PATCH/PUT /course_sessions/1.json
-  def update
-    respond_to do |format|
-      if @course_session.update(course_session_params)
-        format.html { redirect_to @course_session, notice: 'Course session was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course_session }
-      else
-        format.html { render :edit }
-        format.json { render json: @course_session.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /course_sessions/1
-  # DELETE /course_sessions/1.json
-  def destroy
-    @course_session.destroy
-    respond_to do |format|
-      format.html { redirect_to course_sessions_url, notice: 'Course session was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    authorize @course_session
   end
 
   private
