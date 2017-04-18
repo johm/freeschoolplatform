@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @course_collection.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @course_collection.description %>
+</p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @course_collection.site %>
+</p>
+
+<p>
+  <strong>Is open:</strong>
+  <%= @course_collection.is_open %>
+</p>
+
+<%= link_to 'Edit', edit_course_collection_path(@course_collection) %> |
+<%= link_to 'Back', course_collection_index_path %>

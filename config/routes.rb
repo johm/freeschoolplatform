@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :course_proposal_question_answers
     resources :courses
     resources :course_sessions
-    resources :course_series
+    resources :course_collections
     resources :locations
     resources :pages
     resources :menus

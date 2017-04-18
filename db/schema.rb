@@ -10,15 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408224157) do
+ActiveRecord::Schema.define(version: 20170418214352) do
 
-  create_table "course_course_series", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "course_collections", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name"
+    t.text     "description", limit: 65535
+    t.integer  "site_id"
+    t.boolean  "is_open"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["site_id"], name: "index_course_collections_on_site_id", using: :btree
+  end
+
+  create_table "course_course_collections", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "course_id"
-    t.integer  "course_series_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["course_id"], name: "index_course_course_series_on_course_id", using: :btree
-    t.index ["course_series_id"], name: "index_course_course_series_on_course_series_id", using: :btree
+    t.integer  "course_collection_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["course_collection_id"], name: "index_course_course_collections_on_course_collection_id", using: :btree
+    t.index ["course_id"], name: "index_course_course_collections_on_course_id", using: :btree
   end
 
   create_table "course_proposal_question_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -87,16 +97,6 @@ ActiveRecord::Schema.define(version: 20170408224157) do
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_course_registrations_on_course_id", using: :btree
     t.index ["user_id"], name: "index_course_registrations_on_user_id", using: :btree
-  end
-
-  create_table "course_series", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "name"
-    t.text     "description", limit: 65535
-    t.integer  "site_id"
-    t.boolean  "is_open"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.index ["site_id"], name: "index_course_series_on_site_id", using: :btree
   end
 
   create_table "course_sessions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -237,6 +237,7 @@ ActiveRecord::Schema.define(version: 20170408224157) do
     t.index ["site_id"], name: "index_users_on_site_id", using: :btree
   end
 
+  add_foreign_key "course_collections", "sites"
   add_foreign_key "course_proposal_question_answers", "course_proposal_questions"
   add_foreign_key "course_proposal_question_answers", "course_proposals"
   add_foreign_key "course_proposal_statuses", "course_proposals"
@@ -244,7 +245,6 @@ ActiveRecord::Schema.define(version: 20170408224157) do
   add_foreign_key "course_proposals", "users"
   add_foreign_key "course_registrations", "courses"
   add_foreign_key "course_registrations", "users"
-  add_foreign_key "course_series", "sites"
   add_foreign_key "crosslistings", "courses"
   add_foreign_key "crosslistings", "sites"
   add_foreign_key "menu_pages", "menus"

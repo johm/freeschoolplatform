@@ -23,7 +23,8 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #gem "administrate", "~> 0.3.0"
-gem "administrate","~> 0.4.0"   
+gem "administrate","~> 0.4.0"
+#gem "administrate", git: "https://github.com/thoughtbot/administrate"
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'bourbon'
 gem 'devise'

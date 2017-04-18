@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Course Collection</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Site</th>
+      <th>Is open</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @course_collections.each do |course_collection| %>
+      <tr>
+        <td><%= course_collection.name %></td>
+        <td><%= course_collection.description %></td>
+        <td><%= course_collection.site %></td>
+        <td><%= course_collection.is_open %></td>
+        <td><%= link_to 'Show', course_collection %></td>
+        <td><%= link_to 'Edit', edit_course_collection_path(course_collection) %></td>
+        <td><%= link_to 'Destroy', course_collection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Course Collection', new_course_collection_path %>
