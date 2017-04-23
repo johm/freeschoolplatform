@@ -13,6 +13,8 @@ class SiteDashboard < Administrate::BaseDashboard
     domain: Field::String,
     homepage: Field::BelongsTo.with_options(class_name: "Page"),
     footer: Field::Text,
+    proposal_preface: Field::Text,
+    idea_preface: Field::Text,
     course_proposal_questions: Field::NestedHasMany.with_options(skip: :site),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -38,6 +40,8 @@ class SiteDashboard < Administrate::BaseDashboard
     :name,
     :domain,
     :footer,
+    :idea_preface,
+    :proposal_preface,
     :homepage,
     :created_at,
     :updated_at,
@@ -49,7 +53,9 @@ class SiteDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :name,
     :domain,
-    :footer,                 
+    :footer,          
+    :idea_preface,
+    :proposal_preface,       
     :homepage,
     :course_proposal_questions
   ].freeze
