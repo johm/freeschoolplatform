@@ -1,0 +1,13 @@
+<%= @idea.name %> (<%= @idea.email %>) has submitted a new idea for a course!
+ 
+Course idea
+--------------------------
+<%= @idea.what %>
+
+One-off or ongoing course?
+--------------------------
+<%= @idea.format_of_idea %>
+
+View the course
+--------------------------
+http://<%= @site.domain %>/admin/course_ideas/<%= @idea.id %>

@@ -8,8 +8,14 @@
       <a class="dropdown-item" href="/course_proposals/new">Propose a course or workshop</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="/course_archive">Course archive</a>
+      <div class="dropdown-divider"></div>
+      <% @site.course_collections.where(:is_published=>true).each do |cc| %>
+      <%= link_to cc.name,cc,:class=>"dropdown-item" %>
+      <% end %>
     </div>
 </li>
+<li class="nav-item"><a class="nav-link" href="/course_proposals/new">Propose a course</a></li>
+<li class="nav-item"><a class="nav-link" href="/course_ideas/new">Submit an idea</a></li>
 <% @site.menus.where(:name=>"Main").first.menu_pages.each do |mp| %>
 <li class="nav-item">
   <%= link_to mp.page.name,mp.page, {class: "nav-link"} %>

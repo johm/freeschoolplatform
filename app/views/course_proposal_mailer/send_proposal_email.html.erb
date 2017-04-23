@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+<h1>New course proposal from <%= @course_proposal.user.name  %> (<%= @course_proposal.user.email  %>)</h1>
+
+<h4><a href=" http://<%= @site.domain %>/admin/course_proposals/<%= @course_proposal.id %>">View/approve/reject here</a></h4>
+<hr />
+<h3>Title:</h3>
+<%= @course_proposal.title %>
+
+<h3>Description:</h3>
+<%= @course_proposal.description %>
+
+<h3>Background:</h3>
+<%= @course_proposal.background %>
+
+<h3>Scheduling:</h3>
+<%= @course_proposal.scheduling %>
+
+<% @course_proposal.course_proposal_question_answers.each do |a| %>
+<h3><%= a.course_proposal_question.question %></h3>
+<%= a.answer %>
+<% end %>
+<hr />
+<h4><a href=" http://<%= @site.domain %>/admin/course_proposals/<%= @course_proposal.id %>">View/approve/reject here</a></h4>

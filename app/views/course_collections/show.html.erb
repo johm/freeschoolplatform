@@ -1,0 +1,25 @@
+<h1>
+  <%= @course_collection.name %> 
+  <% unless @course_collection.is_published? %><span class="badge badge-warning">Not published</span> <% end %>
+</h1>
+
+<p class="lead">
+  <%= @course_collection.very_short_description %>
+</p>
+
+
+<% if @course_collection.is_open? %>
+<div class="m-b-3"> <%= link_to "Propose a  course",new_course_proposal_path(), class: "btn btn-outline-primary btn-block" %>   &nbsp; </div>
+<% end %>
+
+<div class="sharethis-inline-share-buttons"></div>
+<div class="m-b-3">&nbsp;</div>
+
+<%= render @course_collection.description %>
+
+<div class="courses">
+  <%= render "courses/coursecards", {:courses=>@course_collection.courses.where(:published=>true)} %>
+</div>
+<br>
+
+

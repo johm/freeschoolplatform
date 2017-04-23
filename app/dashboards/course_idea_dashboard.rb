@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class SiteDashboard < Administrate::BaseDashboard
+class CourseIdeaDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,12 +8,12 @@ class SiteDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    site: Field::BelongsTo,
     id: Field::Number,
     name: Field::String,
-    domain: Field::String,
-    homepage: Field::BelongsTo.with_options(class_name: "Page"),
-    footer: Field::Text,
-    course_proposal_questions: Field::NestedHasMany.with_options(skip: :site),
+    email: Field::String,
+    what: Field::Text,
+    format_of_idea: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -24,11 +24,10 @@ class SiteDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :id,
+    :what,
+    :format_of_idea,
     :name,
-    :domain,                           
-    :created_at,
-    :updated_at,
+    :email,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -36,9 +35,9 @@ class SiteDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :id,
     :name,
-    :domain,
-    :footer,
-    :homepage,
+    :email,
+    :what,
+    :format_of_idea,
     :created_at,
     :updated_at,
   ].freeze
@@ -48,16 +47,15 @@ class SiteDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :name,
-    :domain,
-    :footer,                 
-    :homepage,
-    :course_proposal_questions
+    :email,
+    :what,
+    :format_of_idea,
   ].freeze
 
-  # Overwrite this method to customize how sites are displayed
+  # Overwrite this method to customize how course ideas are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(site)
-  "#{site.name}"
-  end
+  # def display_resource(course_idea)
+  #   "CourseIdea ##{course_idea.id}"
+  # end
 end

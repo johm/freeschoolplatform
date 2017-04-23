@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :course_proposals
-  resources :course_series
+  resources :course_ideas
+  resources :course_collections
   resources :pages
   resources :course_registrations
   resources :locations
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
     resources :course_proposals
     resources :course_proposal_questions
     resources :course_proposal_question_answers
+    resources :course_ideas
     resources :courses
     resources :course_sessions
     resources :course_collections

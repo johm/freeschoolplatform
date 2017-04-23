@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+<h1><%= @idea.name %> (<%= @idea.email %>) has submitted a new idea for a course!</h1>
+ 
+<h2>Course idea</h2>
+
+<%= @idea.what %>
+
+<h2>One-off or ongoing course?</h2>
+
+<%= @idea.format_of_idea %>
+
+<div>
+<a href="http://<%= @site.domain %>/admin/course_ideas/<%= @idea.id %>">View the idea here</a>
+</div>
+ </body>
+</html>

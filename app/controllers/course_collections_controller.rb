@@ -4,12 +4,13 @@ class CourseCollectionsController < ApplicationController
   # GET /course_collection
   # GET /course_collection.json
   def index
-    @course_collection = CourseCollection.all
+    @course_collection = CourseCollection.all.where(:is_published => true)
   end
 
   # GET /course_collection/1
   # GET /course_collection/1.json
   def show
+    authorize @course_collection
   end
 
   private
@@ -20,6 +21,6 @@ class CourseCollectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_collection_params
-      params.require(:course_collection).permit(:name, :description, :site_id, :is_open)
+      params.require(:course_collection).permit(:name, :description, :site_id, :is_open,:very_short_description)
     end
 end

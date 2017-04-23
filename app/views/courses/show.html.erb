@@ -16,6 +16,14 @@
       <dd class="col-sm-10"><%= link_to @course.location.name, @course.location %></dd>
       <dt class="col-sm-2">Instructor</dt>
       <dd class="col-sm-10"><%= @course.instructor.name %></dd>
+      <% if @course.course_collections.where(:is_published  => true).length > 0 %>
+      <dt class="col-sm-2">Part of</dt>
+      <dd class="col-sm-10">
+	<% @course.course_collections.where(:is_published  => true).each do |cc| %>
+	<%= link_to cc.name,cc,:class => "badge badge-pill badge-default"%>
+	<% end %>
+      </dd>
+      <% end %>
       <dt class="col-sm-2">Sessions</dt>
       <dd class="col-sm-10">
 	<% @course.course_sessions.where(:approved=>true).order(:start).each do |cs| %>

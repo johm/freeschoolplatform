@@ -11,7 +11,7 @@ SirTrevor.setDefaults({
 
 
  var editor = new SirTrevor.Editor({
-    el: document.querySelector('#page_body,#course_full_description'),
+    el: document.querySelector('#page_body,#course_full_description,#course_collection_description'),
     defaultType: 'Text',
     iconUrl: '/sir-trevor-icons.svg'
   });

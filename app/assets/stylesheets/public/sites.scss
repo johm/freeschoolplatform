@@ -23,6 +23,18 @@ $darkblue: #2F1749;
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i,800,800i');		
 .site_northavenueknowledgeexchange {
+
+
+
+footer {background-color:lighten($salmon,20%);
+       padding-top:2rem;
+       border-top:1px solid $salmon
+}
+#mc_embed_signup {
+background-color:inherit !important;
+}				   
+#mc-embedded-subscribe {background-color:$salmon !important;}
+				   
     body {
 	
 	#homepagebanner {background-image:url(image-path("banner-nake.jpg"));height:50vh;background-size: auto 100%;background-position:center;background-repeat:no-repeat;background-color:$aqua;}
@@ -31,6 +43,7 @@ $darkblue: #2F1749;
 	font-family: 'Open Sans', sans-serif;
 	.bg-inverse {background-color:inherit !important;}
 	.navbar-inverse {
+	border-bottom:1px solid $aqua;
 	    .navbar-brand img {height:80px;width:auto;}
 	    .navbar-nav {
 		.nav-link {color:$salmon;text-transform:uppercase;font-weight:600;border-bottom:3px solid white;}

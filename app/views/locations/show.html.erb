@@ -1,19 +1,17 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @location.name %></h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @location.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
+<p class="lead">
   <%= @location.description %>
 </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @location.address %>
-</p>
 
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+<h4>Address</h4>
+<div>  <%= @location.address %></div>
+
+<br />
+<iframe class="iframe "  width="100%" height="300" src="https://www.google.com/maps?q=  <%= URI.escape @location.address %>&output=embed"></iframe>
+<br />
+
+<div class="courses">
+  <%= render "courses/coursecards", {:courses=>@location.upcoming_courses} %>
+</div>

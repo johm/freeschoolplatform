@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     begin 
       @site=Site.find_by! :domain=>domain 
     rescue
-      @site=Site.first
+      @site=Site.last
     end
   end
 

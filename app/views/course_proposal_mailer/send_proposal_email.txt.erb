@@ -1,0 +1,25 @@
+New course proposal from <%= @course_proposal.user.name  %> (<%= @course_proposal.user.email  %>)
+
+View here: http://<%= @site.domain %>/admin/course_proposals/<%= @course_proposal.id %>
+
+Title:
+------------
+<%= @course_proposal.title %>
+
+Description:
+------------
+<%= @course_proposal.description %>
+
+Background:
+-----------
+<%= @course_proposal.background %>
+
+Scheduling:
+-----------
+<%= @course_proposal.scheduling %>
+
+<% @course_proposal.course_proposal_question_answers.each do |a| %>
+<%= a.course_proposal_question.question %>
+------------------------------------------
+<%= a.answer %>
+<% end %>

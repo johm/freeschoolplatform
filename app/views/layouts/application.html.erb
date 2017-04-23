@@ -16,5 +16,16 @@
       <%= render 'layouts/messages' %>
       <%= yield %>
     </main>
+    <br />
+    <footer class="footer ">
+      <div class="container p-t-3">
+      <%= @site.footer.html_safe %>
+      </div>
+      <div class="small" style="text-align:right;">
+	This site runs on <a href="https://github.com/johm/freeschoolplatform">freeschoolplatform</a> &nbsp;
+      </div>
+
+    </footer>
+    
   </body>
 </html>

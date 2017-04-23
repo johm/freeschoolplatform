@@ -1,0 +1,66 @@
+<%= form_for(course_idea) do |f| %>
+  <% if course_idea.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(course_idea.errors.count, "error") %> prohibited this course_idea from being saved:</h2>
+      <ul>
+      <% course_idea.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+
+    <div class="field">
+      <%= f.label :name %>
+      <p id="nameHelpBlock" class="form-text text-muted small">
+	What's your name?
+      </p>
+      <%= f.text_field :name , class: "form-control","aria-describedby" => "nameHelpBlock"  %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %>
+      <p id="emailHelpBlock" class="form-text text-muted small">
+	What's your email?
+      </p>
+      <%= f.text_field :email , class: "form-control","aria-describedby" => "emailHelpBlock"  %>
+    </div>
+
+
+    <div class="field">
+      <%= f.label :what, "What would you like to learn?" %>
+      <p id="whatHelpBlock" class="form-text text-muted small">
+	Describe the course or workshop you have in mind that you would like to attend if we offered it.
+      </p>
+      <%= f.text_area :what , class: "form-control","aria-describedby" => "whatHelpBlock",:rows=>7  %>
+    </div>
+
+    <div class="field">
+      <%= f.label :format_of_idea, "Ideal format" %>
+      <p id="format_of_ideaHelpBlock" class="form-text text-muted small">
+	Do you imagine this as a one-off workshop or an ongoing course?
+      </p>
+      
+      <div class="form-check">
+	<label class="form-check-label">
+	  <%= f.radio_button :format_of_idea , 'ongoing', class: "form-check-input","aria-describedby" => "format_of_ideaHelpBlock"  %>
+	  Ongoing course
+	</label>
+      </div>
+
+      <div class="form-check">
+	<label class="form-check-label">
+	  <%= f.radio_button :format_of_idea , 'oneoff', class: "form-check-input","aria-describedby" => "format_of_ideaHelpBlock"  %>
+	  One-off workshop
+	</label>
+      </div>
+
+
+    </div>
+
+
+
+  <%= f.submit "Submit your idea!", class: "btn btn-primary"%>
+
+<% end %>

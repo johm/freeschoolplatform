@@ -1,2 +1,2 @@
-module CourseCourseSeriesHelper
+module CourseCourseCollectionHelper
 end

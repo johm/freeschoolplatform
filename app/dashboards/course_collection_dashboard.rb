@@ -11,9 +11,12 @@ class CourseCollectionDashboard < Administrate::BaseDashboard
     site: Field::BelongsTo,
     id: Field::Number,
     name: Field::String,
+    very_short_description: Field::Text,
     description: Field::Text,
     is_open: Field::Boolean,
-    created_at: Field::DateTime,
+    is_published: Field::Boolean,
+    courses: Field::HasMany,
+   created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
 
@@ -26,7 +29,8 @@ class CourseCollectionDashboard < Administrate::BaseDashboard
     :site,
     :id,
     :name,
-    :description,
+    :is_open,
+    :is_published
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -35,8 +39,10 @@ class CourseCollectionDashboard < Administrate::BaseDashboard
     :site,
     :id,
     :name,
-    :description,
+    :very_short_description,                          
     :is_open,
+    :is_published,
+    :courses,
     :created_at,
     :updated_at,
   ].freeze
@@ -47,14 +53,17 @@ class CourseCollectionDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :site,
     :name,
+    :very_short_description,                 
     :description,
+    :courses,
     :is_open,
+    :is_published
   ].freeze
 
   # Overwrite this method to customize how course collection are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(course_collection)
-  #   "CourseCollection ##{course_collection.id}"
-  # end
+  def display_resource(course_collection)
+     "Course Collection: #{course_collection.name}"
+   end
 end

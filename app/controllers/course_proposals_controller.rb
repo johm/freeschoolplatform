@@ -41,6 +41,9 @@ class CourseProposalsController < ApplicationController
 
     respond_to do |format|
       if @course_proposal.save
+        @site.admins.each do |admin| 
+          CourseProposalMailer.send_proposal_email(@course_proposal,@site,admin).deliver_now
+        end
         format.html { redirect_to @course_proposal, notice: 'Course proposal was successfully created.' }
         format.json { render :show, status: :created, location: @course_proposal }
       else

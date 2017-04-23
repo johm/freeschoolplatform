@@ -10,15 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418214352) do
+ActiveRecord::Schema.define(version: 20170423133713) do
 
   create_table "course_collections", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
-    t.text     "description", limit: 65535
+    t.text     "description",            limit: 65535
     t.integer  "site_id"
     t.boolean  "is_open"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "is_published"
+    t.text     "very_short_description", limit: 65535
     t.index ["site_id"], name: "index_course_collections_on_site_id", using: :btree
   end
 
@@ -29,6 +31,17 @@ ActiveRecord::Schema.define(version: 20170418214352) do
     t.datetime "updated_at",           null: false
     t.index ["course_collection_id"], name: "index_course_course_collections_on_course_collection_id", using: :btree
     t.index ["course_id"], name: "index_course_course_collections_on_course_id", using: :btree
+  end
+
+  create_table "course_ideas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "what",           limit: 65535
+    t.string   "format_of_idea"
+    t.integer  "site_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["site_id"], name: "index_course_ideas_on_site_id", using: :btree
   end
 
   create_table "course_proposal_question_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -185,10 +198,11 @@ ActiveRecord::Schema.define(version: 20170418214352) do
 
   create_table "sites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "domain"
     t.integer  "homepage_id"
+    t.text     "footer",      limit: 65535
     t.index ["homepage_id"], name: "index_sites_on_homepage_id", using: :btree
   end
 
@@ -238,6 +252,7 @@ ActiveRecord::Schema.define(version: 20170418214352) do
   end
 
   add_foreign_key "course_collections", "sites"
+  add_foreign_key "course_ideas", "sites"
   add_foreign_key "course_proposal_question_answers", "course_proposal_questions"
   add_foreign_key "course_proposal_question_answers", "course_proposals"
   add_foreign_key "course_proposal_statuses", "course_proposals"
