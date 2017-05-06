@@ -15,7 +15,7 @@ class CourseProposalDashboard < Administrate::BaseDashboard
     description: Field::Text,
     background: Field::Text,
     scheduling: Field::Text,
-    course_proposal_question_answers: Field::NestedHasMany.with_options(skip: :course_proposal),
+    course_proposal_question_answers: Field::NestedHasMany.with_options(skip: :course_proposal, limit: 100),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
