@@ -11,7 +11,6 @@ class CourseRegistrationsController < ApplicationController
     @course_registration.user=current_user
     session[:destination] = "/courses/#{@course_registration.course.id}"
     authorize @course_registration
-
     respond_to do |format|
       if @course_registration.save
         format.html { redirect_to @course_registration.course, notice: 'You successfully registered for this course.' }

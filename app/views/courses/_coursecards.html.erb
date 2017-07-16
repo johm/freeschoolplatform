@@ -13,14 +13,17 @@
 	  <div class="course_actions">
 	    <%= link_to "More info",course,class: "btn btn-info btn-block mt-1 mb-1 btn-sm" %>
 	    <% if current_user && (current_user.courses_registered_for.include? course) %>
-	    <%= link_to "Cancel your registration for this course",current_user.course_registrations.where(:course=>course).first, method: :delete, class: "btn btn-outline-warning btn-block" %>
+	      <%= link_to "Cancel your registration for this course",current_user.course_registrations.where(:course=>course).first, method: :delete, class: "btn btn-outline-warning btn-block" %>
+	    <% elsif course.registration_open? %>
+	      <%= form_for(CourseRegistration.new(:course=>course)) do |f| %>
+	        <%= f.hidden_field :course_id %>
+	        <%= f.submit "Register for this course",class: "btn btn-sm btn-primary btn-block" %>
+	      <% end %>
 	    <% else %>
-	    <%= form_for(CourseRegistration.new(:course=>course)) do |f| %>
-	    <%= f.hidden_field :course_id %>
-	    <%= f.submit "Register for this course",class: "btn btn-sm btn-primary btn-block" %>
+	      <div class="btn btn-outline-secondary btn-block">Course is full</div>
 	    <% end %>
 	  </div>
-	  <% end %>
+
 	</div>
 	</div>
     </div>

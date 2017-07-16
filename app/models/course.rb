@@ -17,4 +17,8 @@ class Course < ApplicationRecord
     homesite==site || crosslisting_sites.include?(site)
   end
 
+  def registration_open?
+    limit == 0 || ( learners.length < limit) # tiny chance of a race condition here, but not terribly important to handle
+  end
+
 end

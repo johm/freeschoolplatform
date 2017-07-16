@@ -52,11 +52,14 @@
 <div class="m-b-3"> 
 <% if current_user && (current_user.courses_registered_for.include? @course) %>
   <%= link_to "Cancel your registration for this course",current_user.course_registrations.where(:course=>@course).first, method: :delete, class: "btn btn-outline-warning btn-block" %>
-<% else %>
+<% elsif @course.registration_open? %>
   <%= form_for(CourseRegistration.new(:course=>@course)) do |f| %>
-  <%= f.hidden_field :course_id %>
-  <%= f.submit "Register for this course",class: "btn btn-outline-primary btn-block" %>
+    <%= f.hidden_field :course_id %>
+    <%= f.submit "Register for this course",class: "btn btn-outline-primary btn-block" %>
   <% end %>
+<% else %>
+<div class="btn btn-outline-secondary btn-block">Course is full</div>
+
 <% end %>
   &nbsp;
 </div>
