@@ -12,7 +12,7 @@ class CourseRegistrationsController < ApplicationController
     session[:destination] = "/courses/#{@course_registration.course.id}"
     authorize @course_registration
     respond_to do |format|
-      if @course_registration.save
+      if @course_registration.course.registration_open? &&  @course_registration.save
         format.html { redirect_to @course_registration.course, notice: 'You successfully registered for this course.' }
         format.json { render :show, status: :created, location: @course_registration }
       else
